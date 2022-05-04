@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 public class DecodeRequest {
-    private String code;
+    private String sessionKey;
     private String encryptedData;
     private String iv;
 }
