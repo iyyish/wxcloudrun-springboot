@@ -12,9 +12,9 @@ import java.util.List;
 public interface TaskCardMapper {
     TaskCard selectById(@Param("id") Integer id);
 
-    List<TaskCard> selectByStatusAndSubjectOrNot(@Param("status") String status, @Param("subject") String subject);
+    List<TaskCard> selectByStatusAndSubjectOrNot(@Param("status") String status, @Param("subject") String subject, @Param("uid") String uid);
 
-    void updateStatusBySubjectOrNot(@Param("status") String status, @Param("subject") String subject);
+    void updateStatusBySubjectOrNot(@Param("status") String status, @Param("subject") String subject, @Param("uid") String uid);
 
     void updateStatusById(@Param("status") String status, @Param("id") Integer id);
 
@@ -22,5 +22,5 @@ public interface TaskCardMapper {
 
     void deleteById(@Param("id") Integer id);
 
-    int countBySubjectAndContent(@Param("subject") String subject, @Param("content") String content);
+    int countBySubjectAndContentAndUid(@Param("subject") String subject, @Param("content") String content, @Param("uid") String uid);
 }

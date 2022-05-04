@@ -10,9 +10,9 @@ import java.util.List;
  */
 public interface TaskCardService {
 
-    List<TaskCard> selectByStatusAndSubjectOrNot(String status, String subject);
+    List<TaskCard> selectByStatusAndSubjectOrNot(String status, String subject, String uid);
 
-    void updateStatusBySubjectOrNot(String status, String subject);
+    void updateStatusBySubjectOrNot(String status, String subject, String uid);
 
     void updateStatusById(String status, Integer id);
 

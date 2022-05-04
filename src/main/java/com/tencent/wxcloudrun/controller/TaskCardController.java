@@ -30,12 +30,13 @@ public class TaskCardController {
     }
 
     @GetMapping(value = "/api/cards/random")
-    public ApiResponse random(@RequestParam(value = "subject", required = false) String subject) {
+    public ApiResponse random(@RequestParam(value = "subject", required = false) String subject,
+                              @RequestParam("uid") String uid) {
         logger.info("GET /api/cards/random, subject: {}", subject);
-        List<TaskCard> list = taskCardService.selectByStatusAndSubjectOrNot(TaskCardStatus.ACTIVE.getStatus(), subject);
+        List<TaskCard> list = taskCardService.selectByStatusAndSubjectOrNot(TaskCardStatus.ACTIVE.getStatus(), subject, uid);
         if (list.size() == 0) {
-            taskCardService.updateStatusBySubjectOrNot(TaskCardStatus.ACTIVE.getStatus(), subject);
-            list = taskCardService.selectByStatusAndSubjectOrNot(TaskCardStatus.ACTIVE.getStatus(), subject);
+            taskCardService.updateStatusBySubjectOrNot(TaskCardStatus.ACTIVE.getStatus(), subject, uid);
+            list = taskCardService.selectByStatusAndSubjectOrNot(TaskCardStatus.ACTIVE.getStatus(), subject, uid);
         }
         if (list.size() == 0) {
             return ApiResponse.ok();
@@ -79,9 +80,10 @@ public class TaskCardController {
 
     @GetMapping(value = "/api/cards")
     public ApiResponse selectByStatusAndSubject(@RequestParam(value = "status", required = false) String status,
-                                                @RequestParam(value = "subject", required = false) String subject) {
+                                                @RequestParam(value = "subject", required = false) String subject,
+                                                @RequestParam("uid") String uid) {
         logger.info("GET /api/cards, status: {}, subject: {}", status, subject);
-        List<TaskCard> list = taskCardService.selectByStatusAndSubjectOrNot(status, subject);
+        List<TaskCard> list = taskCardService.selectByStatusAndSubjectOrNot(status, subject, uid);
         return ApiResponse.ok(list);
     }
 }

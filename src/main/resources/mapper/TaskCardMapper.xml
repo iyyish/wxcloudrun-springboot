@@ -42,6 +42,7 @@
             <if test="subject!=null and subject!=''">
                 and subject = #{subject,jdbcType=CHAR}
             </if>
+            and uid = #{uid,jdbcType=VARCHAR}
         </where>
     </select>
 
@@ -52,6 +53,7 @@
             <if test="subject!=null and subject!=''">
                 and subject = #{subject,jdbcType=CHAR}
             </if>
+            and uid = #{uid,jdbcType=VARCHAR}
         </where>
     </update>
 
@@ -77,10 +79,11 @@
         where id = #{id,jdbcType=INTEGER}
     </delete>
 
-    <select id="countBySubjectAndContent" resultType="java.lang.Integer">
+    <select id="countBySubjectAndContentAndUid" resultType="java.lang.Integer">
         select count(*)
         from t_task_card
         where subject = #{subject,jdbcType=CHAR}
           and content = #{content,jdbcType=VARCHAR}
+          and uid = #{uid,jdbcType=VARCHAR}
     </select>
 </mapper>
