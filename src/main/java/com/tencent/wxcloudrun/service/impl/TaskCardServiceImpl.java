@@ -41,8 +41,8 @@ public class TaskCardServiceImpl implements TaskCardService {
         // 1. 数据校验
         Assert.hasText(taskCard.getContent(), "卡片内容不能为空");
         Assert.notNull(taskCard.getWeight(), "卡片权重不能为空");
-        Assert.notNull(taskCard.getSubject(), "卡片类型不能为空");
-        Assert.notNull(taskCard.getUid(), "用户信息不能为空");
+        Assert.hasText(taskCard.getSubject(), "卡片类型不能为空");
+        Assert.hasText(taskCard.getUid(), "用户信息不能为空");
         // 2. 内容重复校验
         int count = taskCardMapper.countBySubjectAndContentAndUid(taskCard.getSubject(), taskCard.getContent(), taskCard.getUid());
         Assert.isTrue(count == 0, "卡片内容已存在,不能重复新增");
